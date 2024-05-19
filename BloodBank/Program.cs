@@ -22,6 +22,8 @@ builder.Services.AddCustomJwtAuthentication();
 builder.Services.AddTransient<JwtTokenHandler>();
 builder .Services.AddTransient<IHospitalService, HospitalService>();
 builder.Services.AddTransient<IActivityService, ActivityService>();
+builder.Services.AddTransient<IDonorService, DonorService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

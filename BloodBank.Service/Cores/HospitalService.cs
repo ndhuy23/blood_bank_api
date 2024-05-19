@@ -36,7 +36,7 @@ namespace BloodBank.Service.Cores
         }
         public async Task<bool> IsHospitalExistsAsync(string username)
         {
-            return await _db.Hospitals.FirstOrDefaultAsync(h => h.Email == username) != null;
+            return await _db.Hospitals.FirstOrDefaultAsync(h => h.Username == username) != null;
         }
         public async Task<ResultModel> GetHospitalById(Guid hospitalId)
         {
@@ -62,7 +62,7 @@ namespace BloodBank.Service.Cores
                 try
                 {
                     //Check exist
-                    var isExisted = await IsHospitalExistsAsync(hospitalDto.Email);
+                    var isExisted = await IsHospitalExistsAsync(hospitalDto.Username);
                     if (isExisted) throw new Exception("Username is existed");
                     hospitalDto.Password = BCrypt.Net.BCrypt.HashPassword(hospitalDto.Password);
                     var hospitalNew = _mapper.Map<Hospital>(hospitalDto);

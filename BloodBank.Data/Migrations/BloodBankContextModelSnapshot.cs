@@ -112,8 +112,7 @@ namespace BloodBank.Data.Migrations
                     b.Property<string>("Avarta")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
+                    b.Property<string>("BloodType")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
@@ -128,6 +127,10 @@ namespace BloodBank.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -184,15 +187,15 @@ namespace BloodBank.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

@@ -6,9 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using BCrypt.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using BloodBank.Data.Entities;
 
 namespace BloodBank.Service.Utils.Authentication
 {
@@ -28,15 +30,14 @@ namespace BloodBank.Service.Utils.Authentication
             if (string.IsNullOrWhiteSpace(request.UserName) || string.IsNullOrWhiteSpace(request.Password)) return null;
             dynamic userAccount = null;
             //Validation
+
             if (request.Role == Role.Donor)
             {
-                userAccount = _db.Hospitals.Where(us => us.Email == request.UserName
-                                                   && us.Password == request.Password).FirstOrDefault();
+                userAccount = _db.Donors.Where(d => d.Username == request.UserName).FirstOrDefault();
             }
             else if (request.Role == Role.Hospital)
             {
-                userAccount = _db.Donors.Where(us => us.Email == request.UserName
-                                                   && us.Password == request.Password).FirstOrDefault();
+                userAccount = _db.Hospitals.Where(d => d.Username == request.UserName).FirstOrDefault();
             }
             //else
             //{
@@ -44,7 +45,7 @@ namespace BloodBank.Service.Utils.Authentication
             //                                       && us.Password == request.Password).FirstOrDefault();
             //}
             if (userAccount == null) return null;
-
+            if (!BCrypt.Net.BCrypt.Verify(request.Password, userAccount.Password)) return null; 
             var tokenExpiryTimeStamp = DateTime.Now.AddMinutes(JWT_TOKEN_VALIDITY_MINS);
             var tokenKey = Encoding.ASCII.GetBytes(JWT_SECURITY_KEY);
             var claimIdentity = new ClaimsIdentity(new List<Claim>
@@ -70,13 +71,14 @@ namespace BloodBank.Service.Utils.Authentication
 
             return new AuthenticationResponse
             {
-                UserId = userAccount.id,
+                UserId = userAccount.Id,
                 FullName = userAccount.FullName,
-                UserName = userAccount.UserName,
+                Username = userAccount.Username,
                 ExpiresIn = (int)tokenExpiryTimeStamp.Subtract(DateTime.Now).TotalSeconds,
                 JwtToken = token
             };
 
         }
+        
     }
 }

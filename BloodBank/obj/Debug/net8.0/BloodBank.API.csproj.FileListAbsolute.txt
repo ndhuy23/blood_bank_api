@@ -147,3 +147,4 @@ H:\blood_bank\BloodBank\obj\Debug\net8.0\BloodBank.API.pdb
 H:\blood_bank\BloodBank\obj\Debug\net8.0\BloodBank.API.genruntimeconfig.cache
 H:\blood_bank\BloodBank\obj\Debug\net8.0\ref\BloodBank.API.dll
 H:\blood_bank\BloodBank\bin\Debug\net8.0\BCrypt.Net-Next.dll
+H:\blood_bank\BloodBank\obj\Debug\net8.0\BloodBank.API.sourcelink.json

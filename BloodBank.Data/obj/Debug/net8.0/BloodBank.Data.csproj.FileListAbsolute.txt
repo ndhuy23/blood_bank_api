@@ -12,3 +12,4 @@ H:\blood_bank\BloodBank.Data\obj\Debug\net8.0\refint\BloodBank.Data.dll
 H:\blood_bank\BloodBank.Data\obj\Debug\net8.0\BloodBank.Data.pdb
 H:\blood_bank\BloodBank.Data\obj\Debug\net8.0\BloodBank.Data.genruntimeconfig.cache
 H:\blood_bank\BloodBank.Data\obj\Debug\net8.0\ref\BloodBank.Data.dll
+H:\blood_bank\BloodBank.Data\obj\Debug\net8.0\BloodBank.Data.sourcelink.json

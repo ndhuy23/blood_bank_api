@@ -10,7 +10,7 @@ namespace BloodBank.Data.Dtos.Authentication
     {
         public Guid UserId { get; set; }
         public string FullName { get; set; }
-        public string UserName { get; set; }
+        public string Username { get; set; }
         public string JwtToken { get; set; }
         public int ExpiresIn { get; set; }
     }

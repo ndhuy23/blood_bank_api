@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BloodBank.Data.Dtos.Activity;
+using BloodBank.Data.Dtos.Donor;
 using BloodBank.Data.Dtos.Hospital;
 using BloodBank.Data.Dtos.Users;
 using BloodBank.Data.Entities;
@@ -24,11 +25,20 @@ namespace BloodBank.Service.Utils.Mapper
                 .ReverseMap();
 
                 config.CreateMap<HospitalDto, Hospital>()
-                .ForMember(h => h.Email,opt => opt.MapFrom(dto => dto.Email))
+                .ForMember(h => h.Username,opt => opt.MapFrom(dto => dto.Username))
                 .ForMember(h => h.Avatar, opt => opt.MapFrom(dto => dto.Avatar))
                 .ForMember(h => h.Password, opt => opt.MapFrom(dto => dto.Password))
                 .ForMember(h => h.Address, opt => opt.MapFrom(dto => dto.Address))
                 .ForMember(h => h.FullName, opt => opt.MapFrom(dto => dto.FullName))
+                .ReverseMap();
+
+                config.CreateMap<DonorDto, Donor>()
+                .ForMember(h => h.Phone, opt => opt.MapFrom(dto => dto.Phone))
+                .ForMember(h => h.Avarta, opt => opt.MapFrom(dto => dto.Avarta))
+                .ForMember(h => h.Username, opt => opt.MapFrom(dto => dto.Username))
+                .ForMember(h => h.FullName, opt => opt.MapFrom(dto => dto.FullName))
+                .ForMember(h => h.Password, opt => opt.MapFrom(dto => dto.Password))
+                .ForMember(h => h.BloodType, opt => opt.MapFrom(dto => dto.BloodType))
                 .ReverseMap();
             });
             return mapperConfig;
