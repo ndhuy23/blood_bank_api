@@ -1,4 +1,5 @@
 ﻿using BloodBank.Data.Abtractions;
+using BloodBank.Data.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,8 @@ namespace BloodBank.Data.Entities
         public int NumberIsRegistration { get; set; } = 0;
 
         public List<SessionDonor> SessionDonors { get; set; } = new List<SessionDonor>();
+
+        public StatusActivity Status { get; set; }
         
     }
 }

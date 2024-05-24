@@ -17,5 +17,9 @@ namespace BloodBank.Data.Entities
 
         public int Quantity { get; set; }
 
+        public Guid HospitalId { get; set; }
+
+        public string HospitalName { get; set;}
+
     }
 }

@@ -15,6 +15,5 @@ namespace BloodBank.Data.Dtos
         public int? TotalCount { get; set; }
 
         public object? Data {  get; set; }
-        
     }
 }

@@ -145,3 +145,6 @@ H:\blood_bank\BloodBank\bin\Debug\net8.0\AutoMapper.dll
 H:\blood_bank\BloodBank\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 H:\blood_bank\BloodBank\bin\Debug\net8.0\BloodBank.Service.dll
 H:\blood_bank\BloodBank\bin\Debug\net8.0\BloodBank.Service.pdb
+H:\blood_bank\BloodBank\obj\Debug\net8.0\BloodBank.MvcApplicationPartsAssemblyInfo.cs
+H:\blood_bank\BloodBank\obj\Debug\net8.0\BloodBank.sourcelink.json
+H:\blood_bank\BloodBank\bin\Debug\net8.0\BCrypt.Net-Next.dll

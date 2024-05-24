@@ -56,6 +56,9 @@ namespace BloodBank.Data.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DateActivity");
@@ -157,6 +160,13 @@ namespace BloodBank.Data.Migrations
                     b.Property<Guid>("DonorId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("HospitalId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("HospitalName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
@@ -222,6 +232,9 @@ namespace BloodBank.Data.Migrations
 
                     b.Property<DateTimeOffset>("DeleteDate")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid?>("HospitalAccept")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("HospitalId")
                         .HasColumnType("uniqueidentifier");

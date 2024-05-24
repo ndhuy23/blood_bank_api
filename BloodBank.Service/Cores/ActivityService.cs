@@ -3,6 +3,7 @@ using BloodBank.Data.DataAccess;
 using BloodBank.Data.Dtos;
 using BloodBank.Data.Dtos.Activity;
 using BloodBank.Data.Entities;
+using BloodBank.Data.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,7 +18,9 @@ namespace BloodBank.Service.Cores
     {
         Task<ResultModel> AddActivity(ActivityDto activity);
         Task<ResultModel> Delete(Guid activityId);
-        Task<ResultModel> GetActivity(Guid? hospitalId, DateTime? cursor, DateTimeOffset? from, DateTimeOffset? to, int pageSize);
+        Task<ResultModel> GetActivityByCursor(Guid? hospitalId, DateTime? cursor, DateTimeOffset? from, DateTimeOffset? to, int pageSize, StatusActivity? status);
+        Task<ResultModel> GetActivity(Guid? hospitalId, StatusActivity? status);
+
         Task<ResultModel> Update(Guid hospitalId, ActivityDto activity);
         Task<ResultModel> GetActivityById(Guid activityId);
     }
@@ -82,7 +85,7 @@ namespace BloodBank.Service.Cores
             }
             return _result;
         }
-        public async Task<ResultModel> GetActivity(Guid? hospitalId, DateTime? cursor,DateTimeOffset? from, DateTimeOffset? to, int pageSize)
+        public async Task<ResultModel> GetActivityByCursor(Guid? hospitalId, DateTime? cursor, DateTimeOffset? from, DateTimeOffset? to, int pageSize, StatusActivity? status)
         {
             try
             {
@@ -176,6 +179,36 @@ namespace BloodBank.Service.Cores
                 }
             }
             return _result;
+        }
+
+        public async Task<ResultModel> GetActivity(Guid? hospitalId, StatusActivity? status)
+        {
+            try
+            {
+                var query = _db.Activities.AsQueryable();
+                if (hospitalId.HasValue)
+                {
+                    query = query.Where(r => r.HospitalId == hospitalId).OrderBy(a => a.DateActivity);
+                }
+                if (status.HasValue)
+                {
+                    query = query.Where(a => a.Status == status).OrderBy(a => a.DateActivity);
+                }
+                
+
+                _result.Data = query.ToList();
+                _result.IsSuccess = true;
+                _result.Message = "Get activity successful";
+
+                return _result;
+            }
+            catch (Exception e)
+            {
+                _result.IsSuccess = false;
+                _result.Message = e.Message;
+            }
+            return _result;
+            throw new NotImplementedException();
         }
     }
 }

@@ -12,10 +12,12 @@ namespace BloodBank.Data.Entities
 {
     public class RequestBlood : EntityAuditBase<Guid>
     {
-
+        
         public Guid HospitalId { get; set; }
 
         public Hospital Hospital { get; set; }
+
+        public Guid? HospitalAccept { get; set; }
 
         public string BloodType {  get; set; }
 

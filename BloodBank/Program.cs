@@ -23,15 +23,22 @@ builder.Services.AddTransient<JwtTokenHandler>();
 builder .Services.AddTransient<IHospitalService, HospitalService>();
 builder.Services.AddTransient<IActivityService, ActivityService>();
 builder.Services.AddTransient<IDonorService, DonorService>();
-
+builder.Services.AddTransient<ISessionDonorService, SessionDonorService>();
+builder.Services.AddTransient<IBloodService, BloodService>();
+builder.Services.AddTransient<IHistoryService, HistorySerivce>();
+builder.Services.AddTransient<IRequestBloodService, RequestBloodService>();
 var app = builder.Build();
-
+app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseSwagger();
+app.UseSwaggerUI();
+app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 
 app.UseHttpsRedirection();
 

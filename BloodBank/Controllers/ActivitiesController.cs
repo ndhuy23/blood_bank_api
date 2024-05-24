@@ -1,5 +1,6 @@
 ﻿using BloodBank.Data.Dtos;
 using BloodBank.Data.Dtos.Activity;
+using BloodBank.Data.Enums;
 using BloodBank.Service.Cores;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,9 +20,16 @@ namespace BloodBank.Controllers
             _result = new ResultModel();
         }
         [HttpGet]
-        public async Task<IActionResult> Get(Guid? hospitalId ,DateTime? cursor, DateTimeOffset? from, DateTimeOffset? to, int pageSize)
+        public async Task<IActionResult> GetByCursor(Guid? hospitalId ,DateTime? cursor, DateTimeOffset? from, DateTimeOffset? to, int pageSize, StatusActivity? status)
         {
-            _result = await _service.GetActivity(hospitalId, cursor, from, to, pageSize);
+            _result = await _service.GetActivityByCursor(hospitalId, cursor, from, to, pageSize, status);
+            if (!_result.IsSuccess) return BadRequest(_result);
+            return Ok(_result);
+        }
+        [HttpGet("hospitals/{hospitalId}")]
+        public async Task<IActionResult> GetByHospitalId(Guid hospitalId, StatusActivity? status)
+        {
+            _result = await _service.GetActivity(hospitalId, status);
             if (!_result.IsSuccess) return BadRequest(_result);
             return Ok(_result);
         }
