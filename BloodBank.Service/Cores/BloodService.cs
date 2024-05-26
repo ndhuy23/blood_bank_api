@@ -3,6 +3,7 @@ using BloodBank.Data.DataAccess;
 using BloodBank.Data.Dtos;
 using BloodBank.Data.Dtos.Donor;
 using BloodBank.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace BloodBank.Service.Cores
         Task<ResultModel> GetBlood(PagingModel donorDto);
         Task<ResultModel> GetById(Guid donorId);
         Task<ResultModel> Update(Guid donorId, BloodDto donorDto);
+        Task<ResultModel> GetBloodByHospitalId(Guid hospitalId); 
     }
     public class BloodService : IBloodService
     {
@@ -77,6 +79,30 @@ namespace BloodBank.Service.Cores
         public Task<ResultModel> Update(Guid donorId, BloodDto donorDto)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<ResultModel> GetBloodByHospitalId(Guid hospitalId)
+        {
+            try
+            {
+                var bloodTypeSummary = await _db.Bloods.GroupBy(b => b.BloodType)
+                               .Select(g => new
+                               {
+                                   BloodType = g.Key,
+                                   TotalBloodQuantity = g.Sum(b => b.Quantity)
+                               })
+                               .ToListAsync();
+
+                _result.Data = bloodTypeSummary;
+                _result.IsSuccess = true;
+                _result.Message = "Get successful";
+            }
+            catch(Exception ex)
+            {
+                _result.IsSuccess = false;
+                _result.Message = ex.Message;
+            }
+            return _result;
         }
     }
 }

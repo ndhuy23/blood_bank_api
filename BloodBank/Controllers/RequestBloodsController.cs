@@ -1,12 +1,13 @@
 ﻿using BloodBank.Data.Dtos;
 using BloodBank.Data.Enums;
 using BloodBank.Service.Cores;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BloodBank.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/requestbloods/")]
     [ApiController]
     public class RequestBloodsController : ControllerBase
     {
@@ -20,6 +21,7 @@ namespace BloodBank.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> GetRequest(StatusRequestBlood statusSession, int page, int pageSize) 
         {
             _result = await _service.GetRequest(statusSession, page, pageSize);
@@ -27,6 +29,7 @@ namespace BloodBank.Controllers
             return Ok(_result);
         }
         [HttpGet("hospitals/{hospitalId}")]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> GetRequestByHospitalId(Guid hospitalId, int page, int pageSize)
         {
             _result = await _service.GetRequestByHospitalId(hospitalId, page, pageSize);
@@ -34,6 +37,7 @@ namespace BloodBank.Controllers
             return Ok(_result);
         }
         [HttpPost]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult>CreateRequest(RequestBloodDto requestDto)
         {
             _result = await _service.CreateRequest(requestDto);
@@ -42,6 +46,7 @@ namespace BloodBank.Controllers
         }
 
         [HttpPut("requests/{requestId}")]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> UpdateRequest(Guid requestId, UpdateRequestBloodDto requestDto)
         {
             _result = await _service.UpdateRequest(requestId, requestDto);

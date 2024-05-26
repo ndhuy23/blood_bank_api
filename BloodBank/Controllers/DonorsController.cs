@@ -2,6 +2,7 @@
 using BloodBank.Data.Dtos.Donor;
 using BloodBank.Data.Dtos.Hospital;
 using BloodBank.Service.Cores;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -51,6 +52,7 @@ namespace BloodBank.Controllers
             return Ok(_result);
         }
         [HttpDelete("{donorId}")]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> DeleteDonor(Guid donorId)
         {
             _result = await _service.DeleteById(donorId);

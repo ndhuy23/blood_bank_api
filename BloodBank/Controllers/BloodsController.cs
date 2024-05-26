@@ -1,6 +1,7 @@
 ﻿using BloodBank.Data.Dtos;
 using BloodBank.Data.Dtos.Donor;
 using BloodBank.Service.Cores;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,7 @@ namespace BloodBank.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> Create(BloodDto bloodDto)
         {
             _result = await _service.CreateBlood(bloodDto);
@@ -27,13 +29,23 @@ namespace BloodBank.Controllers
             return Ok(_result);
         }
         [HttpGet]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> GetBlood([FromQuery] PagingModel donorDto)
         {
             _result = await _service.GetBlood(donorDto);
             if (!_result.IsSuccess) return BadRequest(_result);
             return Ok(_result);
         }
+        [HttpGet("hospitals/{hospitalId}")]
+        [Authorize(Roles = "Hospital,Admin")]
+        public async Task<IActionResult> GetBloodByHospitalId(Guid hospitalId)
+        {
+            _result = await _service.GetBloodByHospitalId(hospitalId);
+            if (!_result.IsSuccess) return BadRequest(_result);
+            return Ok(_result);
+        }
         [HttpGet("{bloodId}")]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> GetById(Guid bloodId)
         {
             _result = await _service.GetById(bloodId);
@@ -41,6 +53,7 @@ namespace BloodBank.Controllers
             return Ok(_result);
         }
         [HttpPut("{bloodId}")]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> GetDonor(Guid donorId, [FromBody] BloodDto bloodId)
         {
             _result = await _service.Update(donorId, bloodId);
@@ -48,6 +61,7 @@ namespace BloodBank.Controllers
             return Ok(_result);
         }
         [HttpDelete("{bloodId}")]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> DeleteDonor(Guid bloodId)
         {
             _result = await _service.DeleteById(bloodId);

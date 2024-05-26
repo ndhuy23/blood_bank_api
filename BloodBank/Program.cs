@@ -4,6 +4,7 @@ using BloodBank.Service.Cores;
 using BloodBank.Service.Utils.Authentication;
 using BloodBank.Service.Utils.Mapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,7 @@ builder.Services.AddTransient<ISessionDonorService, SessionDonorService>();
 builder.Services.AddTransient<IBloodService, BloodService>();
 builder.Services.AddTransient<IHistoryService, HistorySerivce>();
 builder.Services.AddTransient<IRequestBloodService, RequestBloodService>();
+
 var app = builder.Build();
 app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 // Configure the HTTP request pipeline.

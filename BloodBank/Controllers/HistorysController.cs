@@ -1,5 +1,6 @@
 ﻿using BloodBank.Data.Dtos;
 using BloodBank.Service.Cores;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,7 @@ namespace BloodBank.Controllers
             _result = new ResultModel();
         }
         [HttpPost]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> Post(HistoryDto historyDto)
         {
             _result = await _service.CreateHistory(historyDto);
@@ -26,6 +28,7 @@ namespace BloodBank.Controllers
             return Ok(_result);
         }
         [HttpGet("donors/{donorId}")]
+        [Authorize(Roles = "Donor,Hospital,Admin")]
         public async Task<IActionResult> GetHistoryByDonorId(Guid donorId)
         {
             _result = await _service.GetByDonorId(donorId);

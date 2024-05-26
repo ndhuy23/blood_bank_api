@@ -2,6 +2,7 @@
 using BloodBank.Data.Dtos.Activity;
 using BloodBank.Data.Enums;
 using BloodBank.Service.Cores;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,12 +28,14 @@ namespace BloodBank.Controllers
             return Ok(_result);
         }
         [HttpGet("hospitals/{hospitalId}")]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> GetByHospitalId(Guid hospitalId, StatusActivity? status)
         {
             _result = await _service.GetActivity(hospitalId, status);
             if (!_result.IsSuccess) return BadRequest(_result);
             return Ok(_result);
         }
+        [Authorize(Roles = "Hospital,Admin")]
         [HttpGet("{activityId}")]
         public async Task<IActionResult> GetById(Guid activityId)
         {
@@ -41,6 +44,7 @@ namespace BloodBank.Controllers
             return Ok(_result);
         }
         [HttpPost]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> Post(ActivityDto activity)
         {
             _result = await _service.AddActivity(activity);
@@ -48,7 +52,8 @@ namespace BloodBank.Controllers
             return Ok(_result);
 
         }
-        [HttpPut("{activityId}")] 
+        [HttpPut("{activityId}")]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> Put(Guid activityId, [FromBody] ActivityDto activity)
         {
             _result = await _service.Update(activityId, activity);
@@ -56,6 +61,7 @@ namespace BloodBank.Controllers
             return Ok(_result);
         }
         [HttpDelete("{activityId}")]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> Delete(Guid activityId)
         {
             _result = await _service.Delete(activityId);

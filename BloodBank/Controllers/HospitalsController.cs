@@ -1,6 +1,7 @@
 ﻿using BloodBank.Data.Dtos;
 using BloodBank.Data.Dtos.Hospital;
 using BloodBank.Service.Cores;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,7 @@ namespace BloodBank.Controllers
             _result = new ResultModel();
         }
         [HttpGet]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> GetHospital([FromQuery] PagingModel hospital)
         {
             _result = await _service.GetHospitals(hospital);
@@ -26,6 +28,7 @@ namespace BloodBank.Controllers
             return Ok(_result);
         }
         [HttpGet("{hospitalId}")]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> GetHospitalById(Guid hospitalId)
         {
             _result = await _service.GetHospitalById(hospitalId);
@@ -33,6 +36,7 @@ namespace BloodBank.Controllers
             return Ok(_result);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Post(HospitalDto hospital)
         {
             _result = await _service.CreateHospital(hospital);
@@ -42,13 +46,15 @@ namespace BloodBank.Controllers
         
 
         [HttpPut("{hospitalId}")]
-        public async Task<IActionResult> GetHospital(Guid hospitalId, [FromBody]HospitalDto hospital)
+        [Authorize(Roles = "Hospital,Admin")]
+        public async Task<IActionResult> UpdateHospital(Guid hospitalId, [FromBody]HospitalDto hospital)
         {
             _result = await _service.UpdateAsync(hospitalId, hospital);
             if (!_result.IsSuccess) return BadRequest(_result);
             return Ok(_result);
         }
         [HttpDelete("{hospitalId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteHospital(Guid hospitalId)
         {
             _result = await _service.DeleteById(hospitalId);

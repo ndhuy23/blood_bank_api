@@ -4,6 +4,7 @@ using BloodBank.Data.Dtos;
 using BloodBank.Data.Dtos.Hospital;
 using BloodBank.Data.Dtos.SessionDonor;
 using BloodBank.Data.Entities;
+using BloodBank.Data.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace BloodBank.Service.Cores
     {
         Task<ResultModel> CreateSession(SessionDonorDto sessionDto);
         Task<ResultModel> DeleteById(Guid sessionId);
-        Task<ResultModel> GetByActivityId(Guid activityId, PagingModel session);
+        Task<ResultModel> GetByActivityId(Guid activityId, PagingModel session, StatusSession status);
         Task<ResultModel> GetByDonorId(Guid donorId);
         Task<ResultModel> Update(Guid sessionId, UpdateSessionDto sessionDto);
     }
@@ -128,7 +129,7 @@ namespace BloodBank.Service.Cores
             return _result;
         }
 
-        public async Task<ResultModel> GetByActivityId(Guid activityId, PagingModel paging)
+        public async Task<ResultModel> GetByActivityId(Guid activityId, PagingModel paging, StatusSession status)
         {
             try
             {
@@ -136,7 +137,7 @@ namespace BloodBank.Service.Cores
                                                     .Skip((paging.Page -1)*paging.PageSize)
                                                     .Take(paging.PageSize)
                                                     .ToListAsync();
-                var totalCount = await _db.SessionDonors.Where(ss => ss.ActivityId == activityId).CountAsync();
+                var totalCount = await _db.SessionDonors.Where(ss => ss.ActivityId == activityId && ss.Status == status).CountAsync();
                 paging.Data = session;
                 paging.TotalCount = totalCount;
 
