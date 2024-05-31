@@ -22,7 +22,7 @@ namespace BloodBank.Controllers
         }
 
         [HttpGet("activities/{activityId}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> GetByActivityId(Guid activityId, [FromQuery] PagingModel sessionDto, [FromQuery] StatusSession status)
         {
             _result = await _service.GetByActivityId(activityId, sessionDto, status);

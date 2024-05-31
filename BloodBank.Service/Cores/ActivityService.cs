@@ -18,7 +18,7 @@ namespace BloodBank.Service.Cores
     {
         Task<ResultModel> AddActivity(ActivityDto activity);
         Task<ResultModel> Delete(Guid activityId);
-        Task<ResultModel> GetActivityByCursor(Guid? hospitalId, DateTime? cursor, DateTimeOffset? from, DateTimeOffset? to, int pageSize, StatusActivity? status);
+        Task<ResultModel> GetActivityFromTo(Guid? hospitalId, DateTime? cursor, DateTimeOffset? from, DateTimeOffset? to, int pageSize, StatusActivity? status);
         Task<ResultModel> GetActivity(Guid? hospitalId, StatusActivity? status);
 
         Task<ResultModel> Update(Guid hospitalId, ActivityDto activity);
@@ -50,7 +50,7 @@ namespace BloodBank.Service.Cores
                     activityNew.Hospital = hospital;
                     activityNew.NumberIsRegistration = 0;
 
-
+                    if (activity.DateActivity.Date == DateTime.Today) activityNew.Status = StatusActivity.IsGoing;
                     _db.Activities.Add(activityNew);
                     await _db.SaveChangesAsync();
                     transaction.Commit();
@@ -85,7 +85,7 @@ namespace BloodBank.Service.Cores
             }
             return _result;
         }
-        public async Task<ResultModel> GetActivityByCursor(Guid? hospitalId, DateTime? cursor, DateTimeOffset? from, DateTimeOffset? to, int pageSize, StatusActivity? status)
+        public async Task<ResultModel> GetActivityFromTo(Guid? hospitalId, DateTime? cursor, DateTimeOffset? from, DateTimeOffset? to, int pageSize, StatusActivity? status)
         {
             try
             {
@@ -105,14 +105,17 @@ namespace BloodBank.Service.Cores
                 
                 if (from.HasValue)
                 {
-                    query = query.Where(r => r.DateActivity >= from.Value);
+                    query = query.Where(r => r.DateActivity.Date >= from.Value);
                 }
 
                 if (to.HasValue)
                 {
-                    query = query.Where(r => r.DateActivity <= to.Value);
+                    query = query.Where(r => r.DateActivity.Date <= to.Value);
                 }
-
+                if (status.HasValue)
+                {
+                    query = query.Where(r => r.Status == status);
+                }
                 query = query.Take(pageSize);
 
                 _result.Data = query.ToList();

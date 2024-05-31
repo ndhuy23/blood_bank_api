@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BloodBank.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/histories")]
     [ApiController]
     public class HistorysController : ControllerBase
     {

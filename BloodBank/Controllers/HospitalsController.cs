@@ -28,7 +28,6 @@ namespace BloodBank.Controllers
             return Ok(_result);
         }
         [HttpGet("{hospitalId}")]
-        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> GetHospitalById(Guid hospitalId)
         {
             _result = await _service.GetHospitalById(hospitalId);
@@ -36,7 +35,6 @@ namespace BloodBank.Controllers
             return Ok(_result);
         }
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Post(HospitalDto hospital)
         {
             _result = await _service.CreateHospital(hospital);

@@ -13,6 +13,7 @@
           "BloodBank.Data": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.5",
           "Microsoft.IdentityModel.Tokens": "7.5.2",
+          "Quartz": "3.9.0",
           "System.IdentityModel.Tokens.Jwt": "7.5.2"
         },
         "runtime": {
@@ -416,6 +417,18 @@
             "assetType": "runtime",
             "assemblyVersion": "6.0.0.0",
             "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "Quartz/3.9.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
+          "System.Configuration.ConfigurationManager": "6.0.1"
+        },
+        "runtime": {
+          "lib/net6.0/Quartz.dll": {
+            "assemblyVersion": "3.9.0.0",
+            "fileVersion": "3.9.0.0"
           }
         }
       },
@@ -856,6 +869,13 @@
       "sha512": "sha512-hqTM5628jSsQiv+HGpiq3WKBl2c8v1KZfby2J6Pr7pEPlK9waPdgEO6b8A/+/xn/yZ9ulv8HuqK71ONy2tg67A==",
       "path": "microsoft.win32.systemevents/6.0.0",
       "hashPath": "microsoft.win32.systemevents.6.0.0.nupkg.sha512"
+    },
+    "Quartz/3.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vfdug3lRbLYagkrOkeSKqmfT8pBLPY7c/qUsbif+qAJXVkmRQvDbF83fRAK4vzrfz07uDuPJQD+HbIWuliGKiQ==",
+      "path": "quartz/3.9.0",
+      "hashPath": "quartz.3.9.0.nupkg.sha512"
     },
     "System.Configuration.ConfigurationManager/6.0.1": {
       "type": "package",

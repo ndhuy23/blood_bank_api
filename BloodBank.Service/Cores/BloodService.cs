@@ -85,12 +85,14 @@ namespace BloodBank.Service.Cores
         {
             try
             {
-                var bloodTypeSummary = await _db.Bloods.GroupBy(b => b.BloodType)
+                var bloodTypeSummary = await _db.Bloods.Where(bl => bl.HospitalId == hospitalId).GroupBy(b => b.BloodType)
+                               
                                .Select(g => new
                                {
                                    BloodType = g.Key,
                                    TotalBloodQuantity = g.Sum(b => b.Quantity)
                                })
+                               
                                .ToListAsync();
 
                 _result.Data = bloodTypeSummary;

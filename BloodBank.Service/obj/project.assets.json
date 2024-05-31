@@ -641,7 +641,7 @@
       "Microsoft.Win32.SystemEvents/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/Microsoft.Win32.SystemEvents.dll": {
             "related": ".xml"
           }
         },
@@ -660,6 +660,23 @@
           }
         }
       },
+      "Quartz/3.9.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "2.1.1",
+          "System.Configuration.ConfigurationManager": "6.0.1"
+        },
+        "compile": {
+          "lib/net6.0/Quartz.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Quartz.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.Configuration.ConfigurationManager/6.0.1": {
         "type": "package",
         "dependencies": {
@@ -667,7 +684,7 @@
           "System.Security.Permissions": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Configuration.ConfigurationManager.dll": {
             "related": ".xml"
           }
         },
@@ -705,7 +722,7 @@
           "Microsoft.Win32.SystemEvents": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Drawing.Common.dll": {
             "related": ".xml"
           }
         },
@@ -930,7 +947,7 @@
           "System.Windows.Extensions": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Security.Permissions.dll": {
             "related": ".xml"
           }
         },
@@ -1044,7 +1061,7 @@
           "System.Drawing.Common": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Windows.Extensions.dll": {
             "related": ".xml"
           }
         },
@@ -2020,6 +2037,27 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Quartz/3.9.0": {
+      "sha512": "vfdug3lRbLYagkrOkeSKqmfT8pBLPY7c/qUsbif+qAJXVkmRQvDbF83fRAK4vzrfz07uDuPJQD+HbIWuliGKiQ==",
+      "type": "package",
+      "path": "quartz/3.9.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net462/Quartz.dll",
+        "lib/net462/Quartz.xml",
+        "lib/net472/Quartz.dll",
+        "lib/net472/Quartz.xml",
+        "lib/net6.0/Quartz.dll",
+        "lib/net6.0/Quartz.xml",
+        "lib/netstandard2.0/Quartz.dll",
+        "lib/netstandard2.0/Quartz.xml",
+        "quartz-logo-small.png",
+        "quartz.3.9.0.nupkg.sha512",
+        "quartz.nuspec",
+        "quick-start.md"
+      ]
+    },
     "System.Configuration.ConfigurationManager/6.0.1": {
       "sha512": "jXw9MlUu/kRfEU0WyTptAVueupqIeE3/rl0EZDMlf8pcvJnitQ8HeVEp69rZdaStXwTV72boi/Bhw8lOeO+U2w==",
       "type": "package",
@@ -2736,6 +2774,7 @@
       "BloodBank.Data >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.5",
       "Microsoft.IdentityModel.Tokens >= 7.5.2",
+      "Quartz >= 3.9.0",
       "System.IdentityModel.Tokens.Jwt >= 7.5.2"
     ]
   },
@@ -2802,6 +2841,10 @@
           "Microsoft.IdentityModel.Tokens": {
             "target": "Package",
             "version": "[7.5.2, )"
+          },
+          "Quartz": {
+            "target": "Package",
+            "version": "[3.9.0, )"
           },
           "System.IdentityModel.Tokens.Jwt": {
             "target": "Package",

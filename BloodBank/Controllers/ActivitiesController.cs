@@ -23,7 +23,7 @@ namespace BloodBank.Controllers
         [HttpGet]
         public async Task<IActionResult> GetByCursor(Guid? hospitalId ,DateTime? cursor, DateTimeOffset? from, DateTimeOffset? to, int pageSize, StatusActivity? status)
         {
-            _result = await _service.GetActivityByCursor(hospitalId, cursor, from, to, pageSize, status);
+            _result = await _service.GetActivityFromTo(hospitalId, cursor, from, to, pageSize, status);
             if (!_result.IsSuccess) return BadRequest(_result);
             return Ok(_result);
         }
@@ -35,7 +35,6 @@ namespace BloodBank.Controllers
             if (!_result.IsSuccess) return BadRequest(_result);
             return Ok(_result);
         }
-        [Authorize(Roles = "Hospital,Admin")]
         [HttpGet("{activityId}")]
         public async Task<IActionResult> GetById(Guid activityId)
         {

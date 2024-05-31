@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "cMOMwHqASyi4r93D2ZA65dQtFXTeSTFK1GrZXt0dJ34xGwho/Ze+aiHH381jgR4H22Ijik0+d8IXpDcdNywAzw==",
+  "dgSpecHash": "omoCeHWS6+j7LPVdvWez8G5y9m9XATj4DbUjeq0YgSCb4v0ES3H5bYb2fJyjZwj4wR28GuoqQfLBWMd9zKONBQ==",
   "success": true,
   "projectFilePath": "H:\\blood_bank\\BloodBank.Service\\BloodBank.Service.csproj",
   "expectedPackageFiles": [
@@ -41,6 +41,7 @@
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.5.2\\microsoft.identitymodel.tokens.7.5.2.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\quartz\\3.9.0\\quartz.3.9.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.1\\system.configuration.configurationmanager.6.0.1.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",

@@ -51,7 +51,7 @@ namespace BloodBank.Service.Utils.Authentication
             var claimIdentity = new ClaimsIdentity(new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Name, request.UserName),
-                new Claim("Role", request.Role.ToString())
+                new Claim(ClaimTypes.Role, request.Role.ToString())
             });
 
             var signingCredentials = new SigningCredentials(

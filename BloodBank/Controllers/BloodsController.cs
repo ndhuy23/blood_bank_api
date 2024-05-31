@@ -37,7 +37,7 @@ namespace BloodBank.Controllers
             return Ok(_result);
         }
         [HttpGet("hospitals/{hospitalId}")]
-        [Authorize(Roles = "Hospital,Admin")]
+        [Authorize(Roles = "Hospital")]
         public async Task<IActionResult> GetBloodByHospitalId(Guid hospitalId)
         {
             _result = await _service.GetBloodByHospitalId(hospitalId);
