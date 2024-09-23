@@ -19,6 +19,7 @@ namespace BloodBank.Service.Cores
         Task<ResultModel> CreateRequest(RequestBloodDto requestDto);
         Task<ResultModel> GetRequest(StatusRequestBlood statusSession, int page, int pageSize);
         Task<ResultModel> GetRequestByHospitalId(Guid hospitalId, int page, int pageSize);
+        Task<ResultModel> GetRequestIsAcceptByHospitalId(Guid hospitalId, int page, int pageSize);
         Task<ResultModel> UpdateRequest(Guid requestId,UpdateRequestBloodDto requestDto);
     }
     public class RequestBloodService : IRequestBloodService
@@ -131,6 +132,26 @@ namespace BloodBank.Service.Cores
                     _result.IsSuccess = false;
                     _result.Message = ex.Message;
                 }
+            }
+            return _result;
+        }
+
+        public async Task<ResultModel> GetRequestIsAcceptByHospitalId(Guid hospitalId, int page, int pageSize)
+        {
+            try
+            {
+                var requests = await _db.RequestBloods.Where(rq => rq.HospitalAccept == hospitalId && rq.Status == StatusRequestBlood.IsAccept)
+                                                       .Skip((page - 1) * pageSize)
+                                                       .Take(pageSize)
+                                                       .ToListAsync();
+                _result.Data = requests;
+                _result.IsSuccess = true;
+                _result.Message = "Get successful";
+            }
+            catch (Exception ex)
+            {
+                _result.IsSuccess = false;
+                _result.Message = "Get successful";
             }
             return _result;
         }

@@ -133,7 +133,7 @@ namespace BloodBank.Service.Cores
         {
             try
             {
-                var session = await _db.SessionDonors.Where(ss => ss.ActivityId == activityId)
+                var session = await _db.SessionDonors.Where(ss => ss.ActivityId == activityId && ss.Status == status)
                                                     .Skip((paging.Page -1)*paging.PageSize)
                                                     .Take(paging.PageSize)
                                                     .ToListAsync();

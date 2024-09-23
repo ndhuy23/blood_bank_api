@@ -37,7 +37,7 @@ namespace BloodBank.Controllers
             return Ok(_result);
         }
         [HttpGet("hospitals/{hospitalId}")]
-        [Authorize(Roles = "Hospital")]
+        [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> GetBloodByHospitalId(Guid hospitalId)
         {
             _result = await _service.GetBloodByHospitalId(hospitalId);
@@ -68,6 +68,21 @@ namespace BloodBank.Controllers
             if (!_result.IsSuccess) return BadRequest(_result);
             return Ok(_result);
         }
-
+        [HttpGet("/hospitals/{hospitalId}")]
+        [Authorize(Roles = "Hospital,Admin")]
+        public async Task<IActionResult> GetBloodByHospitalIdAndBloodType(Guid hospitalId, string bloodType)
+        {
+            _result = await _service.GetBloods(hospitalId, bloodType);
+            if (!_result.IsSuccess) return BadRequest(_result);
+            return Ok(_result);
+        }
+        [HttpPut("export/{requestId}/{hospitalNewId}")]
+        [Authorize(Roles = "Hospital,Admin")]
+        public async Task<IActionResult> ExportBloods(Guid requestId,Guid hospitalNewId, [FromBody] List<Guid> bloodIds)
+        {
+            _result = await _service.ExportBloods(requestId, hospitalNewId, bloodIds);
+            if (!_result.IsSuccess) return BadRequest(_result);
+            return Ok(_result);
+        }
     }
 }

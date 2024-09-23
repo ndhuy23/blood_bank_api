@@ -53,5 +53,14 @@ namespace BloodBank.Controllers
             if (!_result.IsSuccess) return BadRequest(_result);
             return Ok(_result);
         }
+
+        [HttpGet("hospitals/{hospitalId}/accept")]
+        [Authorize(Roles = "Hospital,Admin")]
+        public async Task<IActionResult> GetRequestIsAcceptByHospitalId(Guid hospitalId, int page, int pageSize)
+        {
+            _result = await _service.GetRequestIsAcceptByHospitalId(hospitalId, page, pageSize);
+            if (!_result.IsSuccess) return BadRequest(_result);
+            return Ok(_result);
+        }
     }
 }

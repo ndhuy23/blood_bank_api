@@ -26,31 +26,35 @@ namespace BloodBank.Service.Utils.BackGround
         }
         public async Task DoWork(CancellationToken stoppingToken)
         {
-
-            // Lấy danh sách các hoạt động chưa hoàn thành
-            var activities = await _db.Activities.Where(a => a.Status == StatusActivity.IsWaiting ||
-                                                             a.Status == StatusActivity.IsGoing)
-                                                .ToListAsync();
-
-            // Kiểm tra và cập nhật trạng thái
-            foreach (var activity in activities)
+            try
             {
-                if (DateTime.Now.Date >= activity.DateActivity)
+                // Lấy danh sách các hoạt động chưa hoàn thành
+                var activities = await _db.Activities.Where(a => (a.Status == StatusActivity.IsWaiting ||
+                                                                 a.Status == StatusActivity.IsGoing) && a.DateActivity.Date <= DateTime.Now.Date)
+                                                    .ToListAsync();
+
+                // Kiểm tra và cập nhật trạng thái
+                foreach (var activity in activities)
                 {
                     _logger.LogInformation($"{activity.DateActivity} aaaaaa");
-                    if (activity.Status == StatusActivity.IsGoing) { 
-                        activity.Status = StatusActivity.Done; 
+                    if (activity.Status == StatusActivity.IsGoing)
+                    {
+                        activity.Status = StatusActivity.Done;
                     }
-                    else { 
-                        activity.Status = StatusActivity.IsGoing; 
+                    else
+                    {
+                        activity.Status = StatusActivity.IsGoing;
                     }
-                    
                     _db.Update(activity);
                 }
-                
-            }
 
-            await _db.SaveChangesAsync();
+               await _db.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
 
         }
 

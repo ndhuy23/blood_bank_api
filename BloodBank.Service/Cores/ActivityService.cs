@@ -105,12 +105,12 @@ namespace BloodBank.Service.Cores
                 
                 if (from.HasValue)
                 {
-                    query = query.Where(r => r.DateActivity.Date >= from.Value);
+                    query = query.Where(r => r.DateActivity.Date >= from.Value.Date);
                 }
 
                 if (to.HasValue)
                 {
-                    query = query.Where(r => r.DateActivity.Date <= to.Value);
+                    query = query.Where(r => r.DateActivity.Date <= to.Value.Date);
                 }
                 if (status.HasValue)
                 {

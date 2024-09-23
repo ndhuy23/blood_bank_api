@@ -9,6 +9,7 @@ namespace BloodBank.Data.Enums
     public enum StatusRequestBlood
     {
         IsWaiting,
-        IsAccept
+        IsAccept,
+        IsCompleted
     }
 }

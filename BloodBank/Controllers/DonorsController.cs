@@ -42,7 +42,20 @@ namespace BloodBank.Controllers
             if (!_result.IsSuccess) return BadRequest(_result);
             return Ok(_result);
         }
-
+        [HttpGet("test")]
+        public async Task<IActionResult> Test()
+        {
+            _result.Data = new Test { Price = 2 };
+            //if (!_result.IsSuccess) return BadRequest(_result);
+            return Ok(_result);
+        }
+        [HttpGet("tes2t")]
+        public async Task<IActionResult> Te2st()
+        {
+            _result.Data = new Test { Price = null };
+            //if (!_result.IsSuccess) return BadRequest(_result);
+            return Ok(_result);
+        }
 
         [HttpPut("{donorId}")]
         public async Task<IActionResult> GetDonor(Guid donorId, [FromBody] DonorDto donorDto)

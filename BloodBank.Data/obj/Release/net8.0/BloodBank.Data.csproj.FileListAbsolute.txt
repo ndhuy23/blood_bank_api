@@ -1,0 +1,15 @@
+H:\blood_bank\BloodBank.Data\bin\Release\net8.0\BloodBank.Data.deps.json
+H:\blood_bank\BloodBank.Data\bin\Release\net8.0\BloodBank.Data.runtimeconfig.json
+H:\blood_bank\BloodBank.Data\bin\Release\net8.0\BloodBank.Data.dll
+H:\blood_bank\BloodBank.Data\bin\Release\net8.0\BloodBank.Data.pdb
+H:\blood_bank\BloodBank.Data\obj\Release\net8.0\BloodBank.Data.csproj.AssemblyReference.cache
+H:\blood_bank\BloodBank.Data\obj\Release\net8.0\BloodBank.Data.GeneratedMSBuildEditorConfig.editorconfig
+H:\blood_bank\BloodBank.Data\obj\Release\net8.0\BloodBank.Data.AssemblyInfoInputs.cache
+H:\blood_bank\BloodBank.Data\obj\Release\net8.0\BloodBank.Data.AssemblyInfo.cs
+H:\blood_bank\BloodBank.Data\obj\Release\net8.0\BloodBank.Data.csproj.CoreCompileInputs.cache
+H:\blood_bank\BloodBank.Data\obj\Release\net8.0\BloodBank.Data.sourcelink.json
+H:\blood_bank\BloodBank.Data\obj\Release\net8.0\BloodBank.Data.dll
+H:\blood_bank\BloodBank.Data\obj\Release\net8.0\refint\BloodBank.Data.dll
+H:\blood_bank\BloodBank.Data\obj\Release\net8.0\BloodBank.Data.pdb
+H:\blood_bank\BloodBank.Data\obj\Release\net8.0\BloodBank.Data.genruntimeconfig.cache
+H:\blood_bank\BloodBank.Data\obj\Release\net8.0\ref\BloodBank.Data.dll
