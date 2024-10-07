@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 
 namespace BloodBank.Data.Entities
 {
-    public class Donor : EntityBase<Guid>, IAccount
+    public class Donor : EntityBase<Guid>
     {
+        public Guid AccountId { get; set; }
 
+        public Account Account { get; set; }
 
         public string? BloodType { get; set; }
 
@@ -20,11 +22,8 @@ namespace BloodBank.Data.Entities
 
         public bool IsActive { get; set; }
 
-        public List<History> Histories { get; set; }
+        public List<History> Histories { get; set; } = new List<History>();
 
-        public List<SessionDonor> SessionDonors { get; set; }
-        public string FullName { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public List<SessionDonor> SessionDonors { get; set; } = new List<SessionDonor>();
     }
 }

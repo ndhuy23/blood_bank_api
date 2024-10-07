@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BloodBank.Data.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,8 @@ namespace BloodBank.Data.Dtos.Hospital
         public string Password { get; set; }
         public string Address { get; set; }
         public string Avatar { get; set; }
+
+        public Role? Role { get; set; }
     }
+    
 }

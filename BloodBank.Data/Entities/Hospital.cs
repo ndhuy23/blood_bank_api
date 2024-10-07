@@ -1,5 +1,6 @@
 ﻿using BloodBank.Data.Abtractions;
 using BloodBank.Data.Abtractions.Entities;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,11 @@ using System.Threading.Tasks;
 
 namespace BloodBank.Data.Entities
 {
-    public class Hospital : EntityBase<Guid>, IAccount
+    public class Hospital : EntityBase<Guid>
     {
+        public Guid AccountId { get; set; }
+
+        public Account Account { get; set; }
         public string Address { get; set; }
         public List<Blood> Bloods { get; set; } = new List<Blood>();
 
@@ -18,8 +22,6 @@ namespace BloodBank.Data.Entities
         public List<RequestBlood> RequestBloods { get; set; } = new List<RequestBlood>();
 
         public string Avatar { get; set; }
-        public string FullName { get; set ; }
-        public string Username { get ; set ; }
-        public string Password { get ; set ; }
+
     }
 }

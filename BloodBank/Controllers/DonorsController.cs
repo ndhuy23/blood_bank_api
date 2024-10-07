@@ -35,13 +35,7 @@ namespace BloodBank.Controllers
             if (!_result.IsSuccess) return BadRequest(_result);
             return Ok(_result);
         }
-        [HttpPost]
-        public async Task<IActionResult> Post(DonorDto donorDto)
-        {
-            _result = await _service.CreateDonor(donorDto);
-            if (!_result.IsSuccess) return BadRequest(_result);
-            return Ok(_result);
-        }
+        
         [HttpGet("test")]
         public async Task<IActionResult> Test()
         {

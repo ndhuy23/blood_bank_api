@@ -18,7 +18,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<BloodBankContext>(option => {
-    Console.WriteLine(builder.Configuration.GetConnectionString("DefaultConnection"));
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddQuartz(q =>
@@ -53,6 +52,7 @@ builder.Services.AddTransient<JwtTokenHandler>();
 builder.Services.AddTransient<IHospitalService, HospitalService>();
 builder.Services.AddTransient<IActivityService, ActivityService>();
 builder.Services.AddTransient<IDonorService, DonorService>();
+builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<ISessionDonorService, SessionDonorService>();
 builder.Services.AddTransient<IBloodService, BloodService>();
 builder.Services.AddTransient<IHistoryService, HistorySerivce>();

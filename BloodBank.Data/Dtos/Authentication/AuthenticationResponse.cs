@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BloodBank.Data.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,7 @@ namespace BloodBank.Data.Dtos.Authentication
         public string Username { get; set; }
         public string JwtToken { get; set; }
         public int ExpiresIn { get; set; }
+
+        public Role Role { get; set; }
     }
 }

@@ -16,12 +16,10 @@ namespace BloodBank.Service.Cores
 {
     public interface IDonorService
     {
-        Task<ResultModel> CreateDonor(DonorDto donorDto);
         Task<ResultModel> DeleteById(Guid donorId);
         Task<ResultModel> GetById(Guid donorId);
         Task<ResultModel> GetDonor(PagingModel donorDto);
         Task<ResultModel> Update(Guid donorId, DonorDto donorDto);
-        Task<bool> IsDonorExistsAsync(string username);
         
     }
     public class DonorService : IDonorService
@@ -35,36 +33,7 @@ namespace BloodBank.Service.Cores
             _result = new ResultModel();
             _mapper = mapper;
         }
-        public async Task<ResultModel> CreateDonor(DonorDto donorDto)
-        {
-            using (var transaction = _db.Database.BeginTransaction())
-            {
-                try
-                {
-                    //Check exist
-                    var isExisted = await IsDonorExistsAsync(donorDto.Username);
-                    if (isExisted) throw new Exception("Username is existed");
-
-                    donorDto.Password = BCrypt.Net.BCrypt.HashPassword(donorDto.Password);
-                    var donor = _mapper.Map<Donor>(donorDto);
-                    _db.Donors.Add(donor);
-                    await _db.SaveChangesAsync();
-                    await transaction.CommitAsync();
-
-                    _result.Data = donor;
-                    _result.IsSuccess = true;
-                    _result.Message = "Create successful";
-                    return _result;
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    _result.IsSuccess = false;
-                    _result.Message = ex.Message;
-                }
-            }
-            return _result;
-        }
+        
 
         public async Task<ResultModel> DeleteById(Guid donorId)
         {
@@ -131,17 +100,7 @@ namespace BloodBank.Service.Cores
             return _result;
         }
 
-        public async Task<bool> IsDonorExistsAsync(string username)
-        {
-            try
-            {
-                return await _db.Donors.FirstOrDefaultAsync(d => d.Username == username) != null;
-            }
-            catch (Exception ex)
-            {
-                return true;
-            }
-        }
+        
 
         public async Task<ResultModel> Update(Guid donorId, DonorDto donorDto)
         {

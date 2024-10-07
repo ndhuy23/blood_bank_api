@@ -26,23 +26,8 @@ namespace BloodBank.Service.Utils.Mapper
                 .ForMember(a => a.OperatingHour, opt => opt.MapFrom(dto => dto.OperatingHour))
                 .ReverseMap();
 
-                config.CreateMap<HospitalDto, Hospital>()
-                .ForMember(h => h.Username,opt => opt.MapFrom(dto => dto.Username))
-                .ForMember(h => h.Avatar, opt => opt.MapFrom(dto => dto.Avatar))
-                .ForMember(h => h.Password, opt => opt.MapFrom(dto => dto.Password))
-                .ForMember(h => h.Address, opt => opt.MapFrom(dto => dto.Address))
-                .ForMember(h => h.FullName, opt => opt.MapFrom(dto => dto.FullName))
+                config.CreateMap<DonorDto, Account>()
                 .ReverseMap();
-
-                config.CreateMap<DonorDto, Donor>()
-                .ForMember(h => h.Phone, opt => opt.MapFrom(dto => dto.Phone))
-                .ForMember(h => h.Avarta, opt => opt.MapFrom(dto => dto.Avarta))
-                .ForMember(h => h.Username, opt => opt.MapFrom(dto => dto.Username))
-                .ForMember(h => h.FullName, opt => opt.MapFrom(dto => dto.FullName))
-                .ForMember(h => h.Password, opt => opt.MapFrom(dto => dto.Password))
-                .ForMember(h => h.BloodType, opt => opt.MapFrom(dto => dto.BloodType))
-                .ReverseMap();
-
                 config.CreateMap<SessionDonorDto, SessionDonor>()
                .ForMember(ss => ss.DonorId, opt => opt.MapFrom(dto => dto.DonorId))
                .ForMember(ss => ss.ActivityId, opt => opt.MapFrom(dto => dto.ActivityId))
@@ -71,6 +56,9 @@ namespace BloodBank.Service.Utils.Mapper
                .ForMember(ht => ht.Quantity, opt => opt.MapFrom(dto => dto.Quantity))
                .ForMember(ht => ht.BloodType, opt => opt.MapFrom(dto => dto.BloodType))
                .ReverseMap();
+
+                config.CreateMap<HospitalDto, Account>()
+                .ReverseMap();
             });
             return mapperConfig;
         }

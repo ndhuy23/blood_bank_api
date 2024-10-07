@@ -28,30 +28,20 @@ namespace BloodBank.Service.Utils.Authentication
         public AuthenticationResponse? GenerateJwtToken(AuthenticationRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.UserName) || string.IsNullOrWhiteSpace(request.Password)) return null;
-            dynamic userAccount = null;
             //Validation
 
-            if (request.Role == Role.Donor)
-            {
-                userAccount = _db.Donors.Where(d => d.Username == request.UserName).FirstOrDefault();
-            }
-            else if (request.Role == Role.Hospital)
-            {
-                userAccount = _db.Hospitals.Where(d => d.Username == request.UserName).FirstOrDefault();
-            }
-            //else
-            //{
-            //    userAccount = _db..Where(us => us.Email == request.UserName
-            //                                       && us.Password == request.Password).FirstOrDefault();
-            //}
+            
+            var userAccount = _db.Accounts.Where(a => a.Username == request.UserName && a.Password == request.Password).FirstOrDefault();
+            
             if (userAccount == null) return null;
-            if (!BCrypt.Net.BCrypt.Verify(request.Password, userAccount.Password)) return null; 
+            //if (!BCrypt.Net.BCrypt.Verify(request.Password, userAccount.Password)) return null; 
             var tokenExpiryTimeStamp = DateTime.Now.AddMinutes(JWT_TOKEN_VALIDITY_MINS);
             var tokenKey = Encoding.ASCII.GetBytes(JWT_SECURITY_KEY);
             var claimIdentity = new ClaimsIdentity(new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Name, request.UserName),
-                new Claim(ClaimTypes.Role, request.Role.ToString())
+                new Claim(ClaimTypes.Role, userAccount.Role.ToString()),
+                new Claim("AccountId", userAccount.Id.ToString()),
             });
 
             var signingCredentials = new SigningCredentials(
@@ -72,6 +62,7 @@ namespace BloodBank.Service.Utils.Authentication
             return new AuthenticationResponse
             {
                 UserId = userAccount.Id,
+                Role = userAccount.Role,
                 FullName = userAccount.FullName,
                 Username = userAccount.Username,
                 ExpiresIn = (int)tokenExpiryTimeStamp.Subtract(DateTime.Now).TotalSeconds,

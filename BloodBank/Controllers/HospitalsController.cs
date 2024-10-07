@@ -34,15 +34,7 @@ namespace BloodBank.Controllers
             if (!_result.IsSuccess) return BadRequest(_result);
             return Ok(_result);
         }
-        [HttpPost]
-        public async Task<IActionResult> Post(HospitalDto hospital)
-        {
-            _result = await _service.CreateHospital(hospital);
-            if (!_result.IsSuccess) return BadRequest(_result);
-            return Ok(_result);
-        }
         
-
         [HttpPut("{hospitalId}")]
         [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> UpdateHospital(Guid hospitalId, [FromBody]HospitalDto hospital)

@@ -16,10 +16,8 @@ namespace BloodBank.Service.Cores
 
     public interface IHospitalService
     {
-        Task<ResultModel> CreateHospital(HospitalDto hospital);
         Task<ResultModel> DeleteById(Guid hospitalId);
         Task<ResultModel> GetHospitals(PagingModel hospital);
-        Task<bool> IsHospitalExistsAsync(string username);
         Task<ResultModel> UpdateAsync(Guid hospitalId, HospitalDto hospital);
         Task<ResultModel> GetHospitalById(Guid hospitalId);
     }
@@ -34,10 +32,7 @@ namespace BloodBank.Service.Cores
             _result = new ResultModel();
             _mapper = mapper;
         }
-        public async Task<bool> IsHospitalExistsAsync(string username)
-        {
-            return await _db.Hospitals.FirstOrDefaultAsync(h => h.Username == username) != null;
-        }
+        
         public async Task<ResultModel> GetHospitalById(Guid hospitalId)
         {
             try
@@ -55,36 +50,7 @@ namespace BloodBank.Service.Cores
             }
             return _result;
         }
-        public async Task<ResultModel> CreateHospital(HospitalDto hospitalDto)
-        {
-            using (var transaction = _db.Database.BeginTransaction())
-            {
-                try
-                {
-                    //Check exist
-                    var isExisted = await IsHospitalExistsAsync(hospitalDto.Username);
-                    if (isExisted) throw new Exception("Username is existed");
-                    hospitalDto.Password = BCrypt.Net.BCrypt.HashPassword(hospitalDto.Password);
-                    var hospitalNew = _mapper.Map<Hospital>(hospitalDto);
-                    _db.Hospitals.Add(hospitalNew);
-                    await _db.SaveChangesAsync();
-                    await transaction.CommitAsync();
-
-                    _result.Data = hospitalNew;
-                    _result.IsSuccess = true;
-                    _result.Message = "Create successful";
-                    return _result;
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    _result.IsSuccess = false;
-                    _result.Message = ex.Message;
-                }
-            }
-            return _result;
-        }
-
+        
         public async Task<ResultModel> GetHospitals(PagingModel paging)
         {
             try
