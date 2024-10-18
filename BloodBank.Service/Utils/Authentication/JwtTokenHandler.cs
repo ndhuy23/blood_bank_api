@@ -31,10 +31,10 @@ namespace BloodBank.Service.Utils.Authentication
             //Validation
 
             
-            var userAccount = _db.Accounts.Where(a => a.Username == request.UserName && a.Password == request.Password).FirstOrDefault();
+            var userAccount = _db.Accounts.Where(a => a.Username == request.UserName).FirstOrDefault();
             
             if (userAccount == null) return null;
-            //if (!BCrypt.Net.BCrypt.Verify(request.Password, userAccount.Password)) return null; 
+            if (!BCrypt.Net.BCrypt.Verify(request.Password, userAccount.Password)) return null; 
             var tokenExpiryTimeStamp = DateTime.Now.AddMinutes(JWT_TOKEN_VALIDITY_MINS);
             var tokenKey = Encoding.ASCII.GetBytes(JWT_SECURITY_KEY);
             var claimIdentity = new ClaimsIdentity(new List<Claim>
