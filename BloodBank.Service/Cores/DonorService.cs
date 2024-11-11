@@ -43,7 +43,7 @@ namespace BloodBank.Service.Cores
                 {
                     _result = await GetById(donorId);
 
-                    _db.Donors.Remove((Donor)_result.Data);
+                    _db.Users.Remove((Donor)_result.Data);
                     await _db.SaveChangesAsync();
                     transaction.Commit();
                     _result.IsSuccess = true;
@@ -64,7 +64,7 @@ namespace BloodBank.Service.Cores
         {
             try
             {
-                var donor = await _db.Donors.FindAsync(donorId);
+                var donor = await _db.Users.FindAsync(donorId);
                 if (donor == null) throw new Exception("Donor is not exist");
                 _result.Data = donor;
                 _result.IsSuccess = true;
@@ -82,11 +82,11 @@ namespace BloodBank.Service.Cores
         {
             try
             {
-                paging.Data = _db.Donors.Skip((paging.Page - 1) * paging.PageSize)
+                paging.Data = _db.Users.Skip((paging.Page - 1) * paging.PageSize)
                 .Take(paging.PageSize)
                 .ToListAsync();
 
-                paging.TotalCount = await _db.Donors.CountAsync();
+                paging.TotalCount = await _db.Users.CountAsync();
 
                 _result.Data = paging;
                 _result.IsSuccess = true;

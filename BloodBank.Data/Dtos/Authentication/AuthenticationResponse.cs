@@ -15,6 +15,6 @@ namespace BloodBank.Data.Dtos.Authentication
         public string JwtToken { get; set; }
         public int ExpiresIn { get; set; }
 
-        public Role Role { get; set; }
+        public string Role { get; set; }
     }
 }

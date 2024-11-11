@@ -22,44 +22,6 @@ namespace BloodBank.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("BloodBank.Data.Entities.Account", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("CreatedDate")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTimeOffset>("DeleteDate")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset>("ModifiedDate")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Accounts");
-                });
-
             modelBuilder.Entity("BloodBank.Data.Entities.Activity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -144,36 +106,6 @@ namespace BloodBank.Data.Migrations
                     b.ToTable("Bloods");
                 });
 
-            modelBuilder.Entity("BloodBank.Data.Entities.Donor", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AccountId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Avarta")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BloodType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountId")
-                        .IsUnique();
-
-                    b.ToTable("Donors");
-                });
-
             modelBuilder.Entity("BloodBank.Data.Entities.History", b =>
                 {
                     b.Property<Guid>("Id")
@@ -213,31 +145,6 @@ namespace BloodBank.Data.Migrations
                     b.HasIndex("DonorId");
 
                     b.ToTable("Histories");
-                });
-
-            modelBuilder.Entity("BloodBank.Data.Entities.Hospital", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AccountId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Avatar")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountId")
-                        .IsUnique();
-
-                    b.ToTable("Hospitals");
                 });
 
             modelBuilder.Entity("BloodBank.Data.Entities.RequestBlood", b =>
@@ -296,6 +203,9 @@ namespace BloodBank.Data.Migrations
                     b.Property<Guid>("DonorId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("HospitalId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -305,7 +215,87 @@ namespace BloodBank.Data.Migrations
 
                     b.HasIndex("DonorId");
 
+                    b.HasIndex("HospitalId");
+
                     b.ToTable("SessionDonors");
+                });
+
+            modelBuilder.Entity("BloodBank.Data.Entities.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Avatar")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BloodType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset>("DeleteDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset>("ModifiedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
+
+                    b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("BloodBank.Data.Entities.Donor", b =>
+                {
+                    b.HasBaseType("BloodBank.Data.Entities.User");
+
+                    b.HasDiscriminator().HasValue("Donor");
+                });
+
+            modelBuilder.Entity("BloodBank.Data.Entities.Hospital", b =>
+                {
+                    b.HasBaseType("BloodBank.Data.Entities.User");
+
+                    b.HasDiscriminator().HasValue("Hospital");
                 });
 
             modelBuilder.Entity("BloodBank.Data.Entities.Activity", b =>
@@ -330,17 +320,6 @@ namespace BloodBank.Data.Migrations
                     b.Navigation("Hospital");
                 });
 
-            modelBuilder.Entity("BloodBank.Data.Entities.Donor", b =>
-                {
-                    b.HasOne("BloodBank.Data.Entities.Account", "Account")
-                        .WithOne("Donor")
-                        .HasForeignKey("BloodBank.Data.Entities.Donor", "AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Account");
-                });
-
             modelBuilder.Entity("BloodBank.Data.Entities.History", b =>
                 {
                     b.HasOne("BloodBank.Data.Entities.Donor", "Donor")
@@ -350,17 +329,6 @@ namespace BloodBank.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Donor");
-                });
-
-            modelBuilder.Entity("BloodBank.Data.Entities.Hospital", b =>
-                {
-                    b.HasOne("BloodBank.Data.Entities.Account", "Account")
-                        .WithOne("Hospital")
-                        .HasForeignKey("BloodBank.Data.Entities.Hospital", "AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("BloodBank.Data.Entities.RequestBlood", b =>
@@ -385,21 +353,16 @@ namespace BloodBank.Data.Migrations
                     b.HasOne("BloodBank.Data.Entities.Donor", "Donor")
                         .WithMany("SessionDonors")
                         .HasForeignKey("DonorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+
+                    b.HasOne("BloodBank.Data.Entities.Hospital", null)
+                        .WithMany("SessionDonors")
+                        .HasForeignKey("HospitalId");
 
                     b.Navigation("Activity");
 
                     b.Navigation("Donor");
-                });
-
-            modelBuilder.Entity("BloodBank.Data.Entities.Account", b =>
-                {
-                    b.Navigation("Donor")
-                        .IsRequired();
-
-                    b.Navigation("Hospital")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("BloodBank.Data.Entities.Activity", b =>
@@ -421,6 +384,8 @@ namespace BloodBank.Data.Migrations
                     b.Navigation("Bloods");
 
                     b.Navigation("RequestBloods");
+
+                    b.Navigation("SessionDonors");
                 });
 #pragma warning restore 612, 618
         }

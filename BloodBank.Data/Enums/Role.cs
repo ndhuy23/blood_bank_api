@@ -6,10 +6,5 @@ using System.Threading.Tasks;
 
 namespace BloodBank.Data.Enums
 {
-    public enum Role
-    {
-        Donor,
-        Hospital,
-        Admin
-    }
+    
 }

@@ -9,7 +9,13 @@ using System.Threading.Tasks;
 
 namespace BloodBank.Data.Entities
 {
-    public class Account : EntityAuditBase<Guid>, IAccount
+    public class Role
+    {
+        public const string Donor = "Donor";
+        public const string Hospital = "Hospital";
+        public const string Admin = "Admin";
+    }
+    public class User : EntityAuditBase<Guid>, IAccount
     {
         public string FullName { get ; set ; }
 
@@ -17,10 +23,18 @@ namespace BloodBank.Data.Entities
 
         public string Password { get ; set; }
 
-        public Role Role { get ; set ; }
+        public string Role { get ; set ; }
 
-        public Donor Donor { get; set; }
+        public string? Address { get; set; }
 
-        public Hospital Hospital { get; set; }
+        public string Phone { get; set; }
+
+        public string? Avatar { get; set; }
+
+        public string? BloodType { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public List<SessionDonor> SessionDonors { get; set; }
     }
 }

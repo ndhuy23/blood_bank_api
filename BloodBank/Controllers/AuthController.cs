@@ -14,11 +14,11 @@ namespace BloodBank.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly JwtTokenHandler _jwtTokenHandler;
-        private readonly IAccountService _accountService;
-        public AuthController(JwtTokenHandler jwtTokenHandler, IAccountService accountService)
+        private readonly IUserService _userService;
+        public AuthController(JwtTokenHandler jwtTokenHandler, IUserService userService)
         {
             _jwtTokenHandler = jwtTokenHandler;
-            _accountService = accountService;
+            _userService = userService;
         }
         [HttpPost]
         public ActionResult<AuthenticationResponse?> Authenticate([FromBody] AuthenticationRequest request)
@@ -31,13 +31,14 @@ namespace BloodBank.API.Controllers
         [HttpPost("donor/registry")]
         public async Task<IActionResult> RegistryDonorAccount(DonorDto request)
         {
-            await _accountService.RegistryDonorAccount(request);
+            var result = await _userService.RegistryDonorAccount(request);
+            if (result.IsSuccess == false) return BadRequest("Registry failed");
             return Ok("Registry account successful");
         }
         [HttpPost("hospital/registry")]
         public async Task<IActionResult> RegistryHospitalAccount(HospitalDto request)
         {
-            await _accountService.RegistryHospitalAccount(request);
+            var result = await _userService.RegistryHospitalAccount(request);
             return Ok("Registry account successful");
         }
     }

@@ -12,13 +12,16 @@ using EntitiesAPI.Infrastructure.Filters.JsonConverters;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+builder.Configuration.AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", optional: true);
+builder.Configuration.AddEnvironmentVariables();
+var connectionStringsSection = builder.Configuration.GetSection("ConnectionStrings");
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<BloodBankContext>(option => {
-    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    option.UseSqlServer(connectionStringsSection["DefaultConnection"]);
 });
 builder.Services.AddQuartz(q =>
 {
@@ -52,7 +55,7 @@ builder.Services.AddTransient<JwtTokenHandler>();
 builder.Services.AddTransient<IHospitalService, HospitalService>();
 builder.Services.AddTransient<IActivityService, ActivityService>();
 builder.Services.AddTransient<IDonorService, DonorService>();
-builder.Services.AddTransient<IAccountService, AccountService>();
+builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ISessionDonorService, SessionDonorService>();
 builder.Services.AddTransient<IBloodService, BloodService>();
 builder.Services.AddTransient<IHistoryService, HistorySerivce>();

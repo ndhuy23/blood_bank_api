@@ -31,7 +31,7 @@ namespace BloodBank.Service.Utils.Authentication
             //Validation
 
             
-            var userAccount = _db.Accounts.Where(a => a.Username == request.UserName).FirstOrDefault();
+            var userAccount = _db.Users.Where(a => a.Username == request.UserName).FirstOrDefault();
             
             if (userAccount == null) return null;
             if (!BCrypt.Net.BCrypt.Verify(request.Password, userAccount.Password)) return null; 
@@ -40,7 +40,7 @@ namespace BloodBank.Service.Utils.Authentication
             var claimIdentity = new ClaimsIdentity(new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Name, request.UserName),
-                new Claim(ClaimTypes.Role, userAccount.Role.ToString()),
+                new Claim(ClaimTypes.Role, userAccount.Role),
                 new Claim("AccountId", userAccount.Id.ToString()),
             });
 

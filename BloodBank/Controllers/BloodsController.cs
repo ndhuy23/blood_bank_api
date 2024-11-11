@@ -36,14 +36,14 @@ namespace BloodBank.Controllers
             if (!_result.IsSuccess) return BadRequest(_result);
             return Ok(_result);
         }
-        [HttpGet("hospitals/{hospitalId}")]
-        [Authorize(Roles = "Hospital,Admin")]
-        public async Task<IActionResult> GetBloodByHospitalId(Guid hospitalId)
-        {
-            _result = await _service.GetBloodByHospitalId(hospitalId);
-            if (!_result.IsSuccess) return BadRequest(_result);
-            return Ok(_result);
-        }
+        //[HttpGet("hospitals/{hospitalId}")]
+        //[Authorize(Roles = "Hospital,Admin")]
+        //public async Task<IActionResult> GetBloodByHospitalId(Guid hospitalId)
+        //{
+        //    _result = await _service.GetBloodByHospitalId(hospitalId);
+        //    if (!_result.IsSuccess) return BadRequest(_result);
+        //    return Ok(_result);
+        //}
         [HttpGet("{bloodId}")]
         [Authorize(Roles = "Hospital,Admin")]
         public async Task<IActionResult> GetById(Guid bloodId)
@@ -68,11 +68,12 @@ namespace BloodBank.Controllers
             if (!_result.IsSuccess) return BadRequest(_result);
             return Ok(_result);
         }
-        [HttpGet("/hospitals/{hospitalId}")]
+        [HttpGet("hospitals/{hospitalId}")]
         [Authorize(Roles = "Hospital,Admin")]
-        public async Task<IActionResult> GetBloodByHospitalIdAndBloodType(Guid hospitalId, string bloodType)
+        public async Task<IActionResult> GetBloodByHospitalIdAndBloodType(Guid hospitalId, string? bloodType)
         {
-            _result = await _service.GetBloods(hospitalId, bloodType);
+            if(bloodType != null)_result = await _service.GetBloods(hospitalId, bloodType);
+            else _result = await _service.GetBloodByHospitalId(hospitalId);
             if (!_result.IsSuccess) return BadRequest(_result);
             return Ok(_result);
         }

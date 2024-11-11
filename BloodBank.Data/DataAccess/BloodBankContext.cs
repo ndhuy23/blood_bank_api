@@ -12,10 +12,7 @@ namespace BloodBank.Data.DataAccess
 {
     public class BloodBankContext : DbContext
     {
-        public DbSet<Account> Accounts { get; set; }
-        public DbSet<Donor> Donors { get; set; }
-
-        public DbSet<Hospital> Hospitals { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public DbSet<Blood> Bloods { get; set; }
 
@@ -36,49 +33,75 @@ namespace BloodBank.Data.DataAccess
                 .WithOne(sd => sd.Activity)
                 .HasForeignKey(sd => sd.ActivityId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<Hospital>()
-                        .HasMany(h => h.Activities)
-                        .WithOne(ac => ac.Hospital)
+            modelBuilder.Entity<Activity>()
+                        .HasOne(h => h.Hospital)
+                        .WithMany(u => u.Activities)
                         .HasForeignKey(ac => ac.HospitalId)
                         .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Hospital>()
-                        .HasMany(h => h.Bloods)
-                        .WithOne(bl => bl.Hospital)
-                        .HasForeignKey(bl => bl.HospitalId)
+            modelBuilder.Entity<Blood>()
+                        .HasOne(h => h.Hospital)
+                        .WithMany(u => u.Bloods)
+                        .HasForeignKey(ac => ac.HospitalId)
                         .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Hospital>()
-                        .HasMany(h => h.RequestBloods)
-                        .WithOne(rq => rq.Hospital)
-                        .HasForeignKey(rq => rq.HospitalId)
+            modelBuilder.Entity<RequestBlood>()
+                        .HasOne(h => h.Hospital)
+                        .WithMany(u => u.RequestBloods)
+                        .HasForeignKey(ac => ac.HospitalId)
                         .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<Donor>()
-                        .HasMany(d => d.Histories)
-                        .WithOne(h => h.Donor)
-                        .HasForeignKey(h => h.DonorId)
+            modelBuilder.Entity<History>()
+                        .HasOne(h => h.Donor)
+                        .WithMany(u => u.Histories)
+                        .HasForeignKey(ac => ac.DonorId)
                         .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<SessionDonor>()
+                        .HasOne(h => h.Donor)
+                        .WithMany(u => u.SessionDonors)
+                        .HasForeignKey(ac => ac.DonorId)
+                        .OnDelete(DeleteBehavior.NoAction);
+            //modelBuilder.Entity<Hospital>()
+            //            .HasMany(h => h.Activities)
+            //            .WithOne(ac => ac.Hospital)
+            //            .HasForeignKey(ac => ac.HospitalId)
+            //            .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Donor>()
-                        .HasMany(d => d.SessionDonors)
-                        .WithOne(sd => sd.Donor)
-                        .HasForeignKey(sd => sd.DonorId)
-                        .OnDelete(DeleteBehavior.Restrict); // Thay đổi hành động cascade
+            //modelBuilder.Entity<Hospital>()
+            //            .HasMany(h => h.Bloods)
+            //            .WithOne(bl => bl.Hospital)
+            //            .HasForeignKey(bl => bl.HospitalId)
+            //            .OnDelete(DeleteBehavior.Cascade);
+
+            //modelBuilder.Entity<Hospital>()
+            //            .HasMany(h => h.RequestBloods)
+            //            .WithOne(rq => rq.Hospital)
+            //            .HasForeignKey(rq => rq.HospitalId)
+            //            .OnDelete(DeleteBehavior.Cascade);
+
+            //modelBuilder.Entity<Donor>()
+            //            .HasMany(d => d.Histories)
+            //            .WithOne(h => h.Donor)
+            //            .HasForeignKey(h => h.DonorId)
+            //            .OnDelete(DeleteBehavior.Cascade);
+
+            //modelBuilder.Entity<Donor>()
+            //            .HasMany(d => d.SessionDonors)
+            //            .WithOne(sd => sd.Donor)
+            //            .HasForeignKey(sd => sd.DonorId)
+            //            .OnDelete(DeleteBehavior.Restrict); // Thay đổi hành động cascade
 
             modelBuilder.Entity<Activity>()
                         .HasIndex(a => a.DateActivity);
 
-            modelBuilder.Entity<Hospital>()
-                        .HasOne(h => h.Account)
-                        .WithOne(a => a.Hospital)
-                        .HasForeignKey<Hospital>(h => h.AccountId);
+            //modelBuilder.Entity<Hospital>()
+            //            .HasOne(h => h.Account)
+            //            .WithOne(a => a.Hospital)
+            //            .HasForeignKey<Hospital>(h => h.AccountId);
 
-            modelBuilder.Entity<Donor>()
-                        .HasOne(d => d.Account)
-                        .WithOne(a => a.Donor)
-                        .HasForeignKey<Donor>(d => d.AccountId);
+            //modelBuilder.Entity<Donor>()
+            //            .HasOne(d => d.Account)
+            //            .WithOne(a => a.Donor)
+            //            .HasForeignKey<Donor>(d => d.AccountId);
         }
         public override int SaveChanges()
         {

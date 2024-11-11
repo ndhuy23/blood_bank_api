@@ -26,7 +26,7 @@ namespace BloodBank.Service.Utils.Mapper
                 .ForMember(a => a.OperatingHour, opt => opt.MapFrom(dto => dto.OperatingHour))
                 .ReverseMap();
 
-                config.CreateMap<DonorDto, Account>()
+                config.CreateMap<DonorDto, User>()
                 .ReverseMap();
                 config.CreateMap<SessionDonorDto, SessionDonor>()
                .ForMember(ss => ss.DonorId, opt => opt.MapFrom(dto => dto.DonorId))
@@ -57,7 +57,7 @@ namespace BloodBank.Service.Utils.Mapper
                .ForMember(ht => ht.BloodType, opt => opt.MapFrom(dto => dto.BloodType))
                .ReverseMap();
 
-                config.CreateMap<HospitalDto, Account>()
+                config.CreateMap<HospitalDto, User>()
                 .ReverseMap();
             });
             return mapperConfig;

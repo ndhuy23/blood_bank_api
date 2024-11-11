@@ -37,7 +37,7 @@ namespace BloodBank.Service.Cores
         {
             try
             {
-                var hospital = await _db.Hospitals.FindAsync(hospitalId);
+                var hospital = _db.Users.FirstOrDefault(u => u.Id == hospitalId && u.Role == Role.Hospital);
                 if (hospital == null) throw new Exception("Hospital is not exist");
                 _result.Data = hospital;
                 _result.IsSuccess = true;
@@ -55,11 +55,11 @@ namespace BloodBank.Service.Cores
         {
             try
             {
-                paging.Data = await _db.Hospitals.Skip((paging.Page - 1) * paging.PageSize)
+                paging.Data = await _db.Users.Where(u => u.Role == Role.Hospital).Skip((paging.Page - 1) * paging.PageSize)
                                                 .Take(paging.PageSize)
                                                 .ToListAsync();
 
-                paging.TotalCount = await _db.Hospitals.CountAsync();
+                paging.TotalCount = await _db.Users.CountAsync();
                 
                 _result.Data = paging;
                 _result.IsSuccess = true;
@@ -107,7 +107,7 @@ namespace BloodBank.Service.Cores
                 {
                     _result = await GetHospitalById(hospitalId);
 
-                    _db.Hospitals.Remove((Hospital)_result.Data);
+                    _db.Users.Remove((User)_result.Data);
                     await _db.SaveChangesAsync();
                     transaction.Commit();
                     _result.IsSuccess = true;

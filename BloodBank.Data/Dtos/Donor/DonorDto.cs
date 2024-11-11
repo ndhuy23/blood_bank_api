@@ -20,5 +20,6 @@ namespace BloodBank.Data.Dtos.Donor
 
         public string? BloodType { get; set; }
 
+        public string Role { get; set; } = "Donor";
     }
 }

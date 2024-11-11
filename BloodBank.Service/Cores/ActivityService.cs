@@ -43,12 +43,8 @@ namespace BloodBank.Service.Cores
                 try
                 {
                     var activityNew = _mapper.Map<Activity>(activity);
-                    var hospital = await _db.Hospitals.FindAsync(activityNew.HospitalId);
+                    var hospital = _db.Users.FirstOrDefault(u => u.Id == activityNew.HospitalId && u.Role == Role.Hospital);
                     if (hospital == null) throw new Exception("Not valid hospital");
-
-
-                    activityNew.Hospital = hospital;
-                    activityNew.NumberIsRegistration = 0;
 
                     if (activity.DateActivity.Date == DateTime.Today) activityNew.Status = StatusActivity.IsGoing;
                     _db.Activities.Add(activityNew);
