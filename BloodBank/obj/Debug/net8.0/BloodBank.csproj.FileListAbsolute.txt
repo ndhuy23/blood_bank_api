@@ -152,3 +152,5 @@ H:\blood_bank\BloodBank\bin\Debug\net8.0\Quartz.dll
 H:\blood_bank\BloodBank\bin\Debug\net8.0\Quartz.AspNetCore.dll
 H:\blood_bank\BloodBank\bin\Debug\net8.0\Quartz.Extensions.DependencyInjection.dll
 H:\blood_bank\BloodBank\bin\Debug\net8.0\Quartz.Extensions.Hosting.dll
+H:\blood_bank\BloodBank\bin\Debug\net8.0\Npgsql.dll
+H:\blood_bank\BloodBank\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll

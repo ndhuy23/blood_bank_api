@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BJ/PV2j85t0R1DXZgIC4MJXWk7qq0NeDODRTwYBQ/A7J2/8ecSpZe4osk8djP6gXY8wtobFxYUCc9ZSRFaaIRw==",
+  "dgSpecHash": "zCbzW4JHf3zbYj7odinfNJlhvda465br43791Hi3tmPmuYGFuhav2kAvcFmmYkPdTMsV9dbyDXkqXx3jqlgmbg==",
   "success": true,
   "projectFilePath": "H:\\blood_bank\\BloodBank\\BloodBank.csproj",
   "expectedPackageFiles": [
@@ -75,6 +75,8 @@
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.5\\microsoft.visualstudio.azure.containers.tools.targets.1.19.5.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\npgsql\\8.0.3\\npgsql.8.0.3.nupkg.sha512",
+    "C:\\Users\\Admins\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\8.0.4\\npgsql.entityframeworkcore.postgresql.8.0.4.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\quartz\\3.9.0\\quartz.3.9.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\quartz.aspnetcore\\3.9.0\\quartz.aspnetcore.3.9.0.nupkg.sha512",
     "C:\\Users\\Admins\\.nuget\\packages\\quartz.extensions.dependencyinjection\\3.9.0\\quartz.extensions.dependencyinjection.3.9.0.nupkg.sha512",

@@ -21,7 +21,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<BloodBankContext>(option => {
-    option.UseSqlServer(connectionStringsSection["DefaultConnection"]);
+    option.UseNpgsql("Host=209.126.12.61;Database=BloodBank;Username=root;Password=secret");
 });
 builder.Services.AddQuartz(q =>
 {

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using BloodBank.Data.DataAccess;
 using BloodBank.Data.Dtos;
 using BloodBank.Data.Entities;
