@@ -22,7 +22,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<BloodBankContext>(option => {
     option.UseNpgsql(connectionStringsSection["DefaultConnection"]);
+
 });
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 builder.Services.AddQuartz(q =>
 {
     var jobKey = new JobKey("UpdateActivity");
