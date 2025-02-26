@@ -13,3 +13,18 @@ H:\blood_bank\BloodBank.Data\obj\Debug\net8.0\BloodBank.Data.pdb
 H:\blood_bank\BloodBank.Data\obj\Debug\net8.0\BloodBank.Data.genruntimeconfig.cache
 H:\blood_bank\BloodBank.Data\obj\Debug\net8.0\ref\BloodBank.Data.dll
 H:\blood_bank\BloodBank.Data\obj\Debug\net8.0\BloodBank.Data.sourcelink.json
+C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Data\bin\Debug\net8.0\BloodBank.Data.deps.json
+C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Data\bin\Debug\net8.0\BloodBank.Data.runtimeconfig.json
+C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Data\bin\Debug\net8.0\BloodBank.Data.dll
+C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Data\bin\Debug\net8.0\BloodBank.Data.pdb
+C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Data\obj\Debug\net8.0\BloodBank.Data.csproj.AssemblyReference.cache
+C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Data\obj\Debug\net8.0\BloodBank.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Data\obj\Debug\net8.0\BloodBank.Data.AssemblyInfoInputs.cache
+C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Data\obj\Debug\net8.0\BloodBank.Data.AssemblyInfo.cs
+C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Data\obj\Debug\net8.0\BloodBank.Data.csproj.CoreCompileInputs.cache
+C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Data\obj\Debug\net8.0\BloodBank.Data.sourcelink.json
+C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Data\obj\Debug\net8.0\BloodBank.Data.dll
+C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Data\obj\Debug\net8.0\refint\BloodBank.Data.dll
+C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Data\obj\Debug\net8.0\BloodBank.Data.pdb
+C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Data\obj\Debug\net8.0\BloodBank.Data.genruntimeconfig.cache
+C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Data\obj\Debug\net8.0\ref\BloodBank.Data.dll

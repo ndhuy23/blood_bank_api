@@ -8,8 +8,11 @@
 
   <ItemGroup>
     <Compile Remove="Ab\**" />
+    <Compile Remove="ViewModels\**" />
     <EmbeddedResource Remove="Ab\**" />
+    <EmbeddedResource Remove="ViewModels\**" />
     <None Remove="Ab\**" />
+    <None Remove="ViewModels\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,10 +27,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 </Project>
