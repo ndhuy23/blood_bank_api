@@ -14,19 +14,3 @@ H:\blood_bank\BloodBank.Service\obj\Debug\net8.0\refint\BloodBank.Service.dll
 H:\blood_bank\BloodBank.Service\obj\Debug\net8.0\BloodBank.Service.pdb
 H:\blood_bank\BloodBank.Service\obj\Debug\net8.0\ref\BloodBank.Service.dll
 H:\blood_bank\BloodBank.Service\obj\Debug\net8.0\BloodBank.Service.sourcelink.json
-C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Service\bin\Debug\net8.0\BloodBank.Service.deps.json
-C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Service\bin\Debug\net8.0\BloodBank.Service.dll
-C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Service\bin\Debug\net8.0\BloodBank.Service.pdb
-C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Service\bin\Debug\net8.0\BloodBank.Data.dll
-C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Service\bin\Debug\net8.0\BloodBank.Data.pdb
-C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Service\obj\Debug\net8.0\BloodBank.Service.csproj.AssemblyReference.cache
-C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Service\obj\Debug\net8.0\BloodBank.Service.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Service\obj\Debug\net8.0\BloodBank.Service.AssemblyInfoInputs.cache
-C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Service\obj\Debug\net8.0\BloodBank.Service.AssemblyInfo.cs
-C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Service\obj\Debug\net8.0\BloodBank.Service.csproj.CoreCompileInputs.cache
-C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Service\obj\Debug\net8.0\BloodBank.Service.sourcelink.json
-C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Service\obj\Debug\net8.0\BloodBan.E99BCE28.Up2Date
-C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Service\obj\Debug\net8.0\BloodBank.Service.dll
-C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Service\obj\Debug\net8.0\refint\BloodBank.Service.dll
-C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Service\obj\Debug\net8.0\BloodBank.Service.pdb
-C:\Users\DUC NGUYEN\source\BloodCenterBackend\BloodBank.Service\obj\Debug\net8.0\ref\BloodBank.Service.dll

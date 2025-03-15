@@ -6017,23 +6017,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DUC NGUYEN\\.nuget\\packages\\": {},
+    "C:\\Users\\Admins\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DUC NGUYEN\\source\\BloodCenterBackend\\BloodBank\\BloodBank.csproj",
+      "projectUniqueName": "H:\\blood_bank\\BloodBank\\BloodBank.csproj",
       "projectName": "BloodBank",
-      "projectPath": "C:\\Users\\DUC NGUYEN\\source\\BloodCenterBackend\\BloodBank\\BloodBank.csproj",
-      "packagesPath": "C:\\Users\\DUC NGUYEN\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DUC NGUYEN\\source\\BloodCenterBackend\\BloodBank\\obj\\",
+      "projectPath": "H:\\blood_bank\\BloodBank\\BloodBank.csproj",
+      "packagesPath": "C:\\Users\\Admins\\.nuget\\packages\\",
+      "outputPath": "H:\\blood_bank\\BloodBank\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\DUC NGUYEN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admins\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6042,19 +6042,17 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
-        "C:\\Users\\DUC NGUYEN\\source\\repos\\NuGet\\Release": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\DUC NGUYEN\\source\\BloodCenterBackend\\BloodBank.Data\\BloodBank.Data.csproj": {
-              "projectPath": "C:\\Users\\DUC NGUYEN\\source\\BloodCenterBackend\\BloodBank.Data\\BloodBank.Data.csproj"
+            "H:\\blood_bank\\BloodBank.Data\\BloodBank.Data.csproj": {
+              "projectPath": "H:\\blood_bank\\BloodBank.Data\\BloodBank.Data.csproj"
             },
-            "C:\\Users\\DUC NGUYEN\\source\\BloodCenterBackend\\BloodBank.Service\\BloodBank.Service.csproj": {
-              "projectPath": "C:\\Users\\DUC NGUYEN\\source\\BloodCenterBackend\\BloodBank.Service\\BloodBank.Service.csproj"
+            "H:\\blood_bank\\BloodBank.Service\\BloodBank.Service.csproj": {
+              "projectPath": "H:\\blood_bank\\BloodBank.Service\\BloodBank.Service.csproj"
             }
           }
         }
@@ -6063,11 +6061,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -6124,7 +6117,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
